@@ -1,20 +1,23 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/SecreenDart/create_new_account.dart';
-import 'package:restaurant_app/SecreenDart/forgot_password_screen.dart';
-import '../sharedWidget/custom_button.dart';
+import 'package:restaurant_app/sharedWidget/custom_button.dart';
 
-class LoginScrean extends StatefulWidget {
-  const LoginScrean({Key? key}) : super(key: key);
+import 'login_screen.dart';
+
+class CreateNewAccount extends StatefulWidget {
+  const CreateNewAccount({Key? key}) : super(key: key);
 
   @override
-  _LoginScreanState createState() => _LoginScreanState();
+  State<CreateNewAccount> createState() => _CreateNewAccountState();
 }
 
-class _LoginScreanState extends State<LoginScrean> {
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+class _CreateNewAccountState extends State<CreateNewAccount> {
+  TextEditingController createUserNameController = TextEditingController();
+  TextEditingController createEmailAddressController = TextEditingController();
+  TextEditingController createMobileController = TextEditingController();
+  TextEditingController createPasswordController = TextEditingController();
+
   bool isHidden = true;
 
   @override
@@ -31,7 +34,7 @@ class _LoginScreanState extends State<LoginScrean> {
                 padding: EdgeInsets.only(top: 100, bottom: 8),
                 width: double.infinity,
                 child: Text(
-                  "Login",
+                  "Register",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -47,10 +50,43 @@ class _LoginScreanState extends State<LoginScrean> {
                 padding: const EdgeInsets.only(
                   left: 16,
                   right: 16,
-                  top: 25,
+                  top: 15,
                 ),
                 child: TextField(
-                  controller: userNameController,
+                  controller: createUserNameController,
+                  style: TextStyle(
+                    color: Color(0xff747474),
+                    fontSize: 16,
+                    //decoration:TextDecoration.underline,
+                  ),
+                  cursorColor: Color(0xff747474),
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    hintText: "Name",
+                    hintStyle: TextStyle(
+                      color: Color(0xff939393),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xfff26d7d),
+                      ),
+                    ),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff747474),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 10,
+                ),
+                child: TextField(
+                  controller: createEmailAddressController,
                   style: TextStyle(
                     color: Color(0xff747474),
                     fontSize: 16,
@@ -59,7 +95,40 @@ class _LoginScreanState extends State<LoginScrean> {
                   cursorColor: Color(0xff747474),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: "Username",
+                    hintText: "Email",
+                    hintStyle: TextStyle(
+                      color: Color(0xff939393),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xfff26d7d),
+                      ),
+                    ),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff747474),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 10,
+                ),
+                child: TextField(
+                  controller: createMobileController,
+                  style: TextStyle(
+                    color: Color(0xff747474),
+                    fontSize: 16,
+                    //decoration:TextDecoration.underline,
+                  ),
+                  cursorColor: Color(0xff747474),
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    hintText: "Mobile",
                     hintStyle: TextStyle(
                       color: Color(0xff939393),
                     ),
@@ -84,7 +153,7 @@ class _LoginScreanState extends State<LoginScrean> {
                 ),
                 child: TextField(
                   obscureText: isHidden,
-                  controller: passwordController,
+                  controller: createPasswordController,
                   style: TextStyle(
                     color: Color(0xff747474),
                     fontSize: 16,
@@ -129,7 +198,7 @@ class _LoginScreanState extends State<LoginScrean> {
                   child: GradientButton(
                     height: 40,
                     child: Text(
-                      "Login",
+                      "Register",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -169,50 +238,40 @@ class _LoginScreanState extends State<LoginScrean> {
               ),
               //Expanded(child: Container()),
               const SizedBox(
-                height: 270,
+                height: 150,
               ),
+
               Row(
                 children: [
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        //Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgotPasswordScreen(),),)
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ForgotPasswordScreen(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                          color: Color(0xff939393),
-                        ),
-                      ),
-                    ),
-                  ),
                   Expanded(
                     child: Container(),
                   ),
                   Container(
-                    width: 145,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const CreateNewAccount(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Create new account",
-                        style: TextStyle(
-                          color: Color(0xff939393),
-                        ),
+                    child: Text(
+                      "Already have an account?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xff747474),
                       ),
                     ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScrean(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(color: Color(0xff747474)),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(),
                   ),
                 ],
               ),
