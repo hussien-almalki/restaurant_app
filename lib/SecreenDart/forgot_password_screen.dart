@@ -1,7 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
+//               ***           ___
+//              (o o)         (o o)
+//          ooO--(_)--Ooo-ooO--(_)--Ooo-
+// "    __________________________________
+// "    Hussien Almalki ()
+// "    https://www.pioneersacademy.com/
+// "    https://github.com/hussien-almalki
+// "
+// "
+// " A customized for Flutter (https://flutter.dev/)
+
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/sharedWidget/custom_button.dart';
+
+import 'login_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -73,18 +86,31 @@ class ForgotPasswordScreen extends StatelessWidget {
                   left: 16,
                   right: 16,
                 ),
-                child: Container(
-                  width: double.infinity,
-                  child: GradientButton(
-                    height: 40,
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+                child: MyElevatedButton(
+                  height: 40,
+                  gradient: LinearGradient(
+                      colors: [Color(0xffEE87D7), Color(0xffF46186)]),
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
-                    onPressed: () {},
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Back to login Screen!",
+                  style: TextStyle(
+                    color: Color(0xff747474),
                   ),
                 ),
               ),

@@ -1,9 +1,21 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+//               ***           ___
+//              (o o)         (o o)
+//          ooO--(_)--Ooo-ooO--(_)--Ooo-
+// "    __________________________________
+// "    Hussien Almalki ()
+// "    https://www.pioneersacademy.com/
+// "    https://github.com/hussien-almalki
+// "
+// "
+// " A customized for Flutter (https://flutter.dev/)
+
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/SecreenDart/create_new_account.dart';
 import 'package:restaurant_app/SecreenDart/forgot_password_screen.dart';
 import '../sharedWidget/custom_button.dart';
+import 'main_screen.dart';
 
 class LoginScrean extends StatefulWidget {
   const LoginScrean({Key? key}) : super(key: key);
@@ -16,6 +28,37 @@ class _LoginScreanState extends State<LoginScrean> {
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isHidden = true;
+  bool validateLoginField() {
+    //   if (userNameController.text.isEmpty) {
+    //     return false;
+    //   } else if (passwordController.text.isEmpty) {
+    //     return false;
+    //   } else {
+    //     return true;
+    //   }
+    if (userNameController.text.isEmpty || passwordController.text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  String validateLoginFieldText() {
+    if (userNameController.text == "pioneersacademy" &&
+        passwordController.text == "pioneersacademy") {
+      return "Correct Username and Password";
+    } else {
+      return "Invalid Username and Password";
+    }
+  }
+
+  Color validateLoginFieldColor(String msg) {
+    if (msg == "Correct Username and Password") {
+      return Colors.green;
+    } else {
+      return Colors.red;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,27 +162,48 @@ class _LoginScreanState extends State<LoginScrean> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.all(12),
+                child: validateLoginField()
+                    ? Text(
+                        validateLoginFieldText(),
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: validateLoginFieldColor(
+                                validateLoginFieldText())),
+                      )
+                    : Container(),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(
-                  top: 40,
                   left: 16,
                   right: 16,
                 ),
-                child: Container(
-                  width: double.infinity,
-                  child: GradientButton(
-                    height: 40,
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
+                child: MyElevatedButton(
+                  height: 40,
+                  gradient: LinearGradient(
+                      colors: validateLoginField()
+                          ? [Color(0xffEE87D7), Color(0xffF46186)]
+                          : [Color(0xffD5D5D5), Color(0xff939393)]),
+                  child: Text(
+                    "Login",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
-                    onPressed: () {},
                   ),
+                  onPressed: validateLoginField()
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MainScreen(),
+                            ),
+                          );
+                        }
+                      : null,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
@@ -169,7 +233,7 @@ class _LoginScreanState extends State<LoginScrean> {
               ),
               //Expanded(child: Container()),
               const SizedBox(
-                height: 270,
+                height: 260,
               ),
               Row(
                 children: [

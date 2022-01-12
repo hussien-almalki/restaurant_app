@@ -1,27 +1,38 @@
+//               ***           ___
+//              (o o)         (o o)
+//          ooO--(_)--Ooo-ooO--(_)--Ooo-
+// "    __________________________________
+// "    Hussien Almalki ()
+// "    https://www.pioneersacademy.com/
+// "    https://github.com/hussien-almalki
+// "
+// "
+// " A customized for Flutter (https://flutter.dev/)
+
 import 'package:flutter/material.dart';
 
-class GradientButton extends StatelessWidget {
-  final Widget child;
-  final VoidCallback onPressed;
-  final double width;
+class MyElevatedButton extends StatelessWidget {
   final double height;
+  final Gradient gradient;
+  final VoidCallback? onPressed;
+  final Widget child;
 
-  const GradientButton({
+  const MyElevatedButton({
     Key? key,
     required this.onPressed,
     required this.child,
-    this.width = double.infinity,
-    this.height = 50.0,
+    this.height = 44.0,
+    required this.gradient,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: ShapeDecoration(
-        shape: const StadiumBorder(),
-        gradient: LinearGradient(
-          colors: [Color(0xffEE87D7), Color(0xffF46186)],
-        ),
+      width: double.infinity,
+      height: height,
+      decoration: BoxDecoration(
+        gradient: gradient,
+        borderRadius: BorderRadius.circular(500),
       ),
       child: MaterialButton(
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
